@@ -695,7 +695,7 @@ try:
             content = ("@everyone " + text) if (do_ping and not text.startswith("@everyone")) else text
             try:
                 await interaction.channel.send(content, allowed_mentions=allowed)
-                await interaction.response.send_message("✅ Posted.", ephemeral=True)
+                await interaction.response.send_message("​", ephemeral=True, delete_after=0)
             except Exception:
                 await interaction.response.send_message("❌ Failed to post. Check channel permissions.", ephemeral=True)
 
@@ -724,10 +724,6 @@ try:
         except Exception:
             await interaction.followup.send("❌ Failed. Check permissions.", ephemeral=True)
             return
-        try:
-            await interaction.followup.send("✅ Message posted.", ephemeral=True)
-        except Exception:
-            pass
 
     # ── /delete ───────────────────────────────────────────────────────────────
     @bot.slash_command(name="delete", description="Delete recent messages (1–100)", guild_ids=[GUILD_ID])
